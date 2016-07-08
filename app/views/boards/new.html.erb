@@ -1,8 +1,31 @@
-<%= link_to "スレッド一覧に戻る","/boards" %>
-<hr>
-<h1>Boards#new</h1>
-<%= form_tag "/boards", method: :post do%>
-	タイトル: <%= text_field_tag :title %> <br>
-	作成者名: <%= text_field_tag :editor %> <br>
-	<%= submit_tag %>
-<% end %>
+<div class="wrapper wrapper_bg">
+	<div class="container">
+		<%= link_to "スレッド一覧に戻る", boards_path %>
+		<hr>
+		<h1>Boards#new</h1>
+		<% if @board.errors.any? %>
+			<%= @board.errors.full_messages %>
+		<% end %>
+		<div class="panel form">
+			<%= form_for @board do |f| %>
+				<div>
+					<div class="form--label">
+						タイトル:
+					</div> <!-- form--label -->
+					<div class="form--input">
+						<%= f.text_field :title %>
+					</div> <!-- form--input -->
+				</div>
+				<div>	
+					<div class="form--label">
+						作成者名:
+					</div> <!-- form--label -->
+					<div class="form--input">
+						<%= f.text_field :editor %>
+					</div> <!-- form--input -->
+				</div>
+				<%= f.submit %>
+			<% end %>
+		</div> <!-- panel -->
+	</div> <!-- container -->
+</div> <!-- wrpper -->
